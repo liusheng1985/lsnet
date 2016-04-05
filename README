@@ -1,0 +1,64 @@
+Hi
+
+This little app can help you to statistics network usage of processes.
+
+Output example 
+2016-4-5 8:48:30:
+Process ID     Command line                  KBytes              KBytes/s                                                                   
+3056           sshd: oracle [priv]           73137               14627                                                                      
+3138           sshd: oracle [priv]           16876               3375                                                                       
+1517           avahi-daemon: running [server 0                   0                                                                          
+2813           sshd: oracle [priv]           0                   0                                                                          
+2938           sshd: oracle [priv]           0                   0                                                                          
+2896           sshd: oracle [priv]           0                   0                                                                          
+2942           sshd: oracle@pts/3            0                   0                                                                          
+2900           sshd: oracle@pts/2            0                   0                                                                          
+2817           sshd: oracle@pts/1            0                   0                                                                          
+1968           /usr/libexec/postfix/master   0                   0                                                                          
+...
+...
+
+0. CHECK LIBPCAP:
+rpm -q libpcap
+
+1. INSTALL:
+cd lsnet
+make clean
+make
+ls -l bin
+
+2. USAGE:
+[root@server2 bin]# ./lsnet 
+
+Usage: 
+    ./lsnet -i interval -c count -t topn -f format -d dev
+
+    interval:
+        Seconds between two reports.
+        
+    count:
+        Number of reports to be generate.
+        
+    topn:
+        Display top n processes.
+        
+    dev:
+        Ethernet interface name. like 'eth0', 'enp0s8'
+        
+    format:
+        Control columns in output.
+        p: process id
+        c: command line
+        b: total bytes in interval
+        k: kb in interval
+        m: mb in interval
+        B: bytes/sec
+        K: kb/sec
+        M: mb/sec
+        
+    EXAMPLE:
+        ./lsnet -d eth0 -i 5 -c 10 -t 10 -f pcmM
+        ./lsnet -deth0 -i5 -c10 -t10 -fpcbB
+
+
+
