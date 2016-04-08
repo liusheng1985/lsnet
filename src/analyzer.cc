@@ -61,8 +61,9 @@ int analyzer::addConnToPorc(conn c)
     pid = t.findProcBySocketInode(c.sockInode);
     if(pid == 0)
     {
-        cout << "socketInode " << c.sockInode << " pid " << pid << endl;
-        abort();
+        //cout << "socketInode " << c.sockInode << " pid " << pid << endl;
+        //abort();
+        return 0;
     }
     processDir = procDir + t.itoa(pid) + "/";
     cmdFile = processDir + "cmdline";
