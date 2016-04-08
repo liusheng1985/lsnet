@@ -108,7 +108,7 @@ vector<string> tool::readDir(string dirName, int hf)
 
     if((dir = opendir(dirName.c_str())) == NULL) 
     {
-        cout << strerror(errno) << endl;
+        //cout << strerror(errno) << endl;
         return fileNames;
     }
     while((drt = readdir(dir)) != NULL)
